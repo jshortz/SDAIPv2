@@ -3,12 +3,15 @@ import java.util.ArrayList;
 public class TaskList {
 
     protected ArrayList<Task> taskList;
+    protected CommandReader commandReader;
 
     public TaskList() {
         taskList = new ArrayList<>();
+        commandReader = new CommandReader();
     }
 
-    public void addTask(Task taskToAdd) {
+    public void addTask() {
+        Task taskToAdd = commandReader.getTaskToAddFromUser();
         taskList.add(taskToAdd);
     }
 
@@ -16,10 +19,6 @@ public class TaskList {
         for (Task task : taskList) {
             System.out.println(task);
         }
-    }
-
-    public Task getTaskByIndex(int indexToGet) {
-        return taskList.get(indexToGet);
     }
 
     public Task getTaskByTitle(String titleToGet) {
@@ -60,10 +59,8 @@ public class TaskList {
 
     public static void main(String[] args) {
         TaskList toDoList = new TaskList();
-        toDoList.addTask(new Task("Drink", "Food", "October", "Eat Food. Yum."));
-        toDoList.addTask(new Task("Drink", "Water", "January", "Drink Water. Yuck."));
-        // toDoList.displayList();
-        Task drinkStuff = toDoList.getTaskByTitle("Drink");
-        System.out.println(drinkStuff);
+        toDoList.addTask();
+        toDoList.addTask();
+        toDoList.displayList();
     }
 }
