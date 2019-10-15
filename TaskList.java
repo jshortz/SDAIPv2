@@ -60,7 +60,6 @@ public class TaskList {
     public static void main(String[] args) {
         TaskList toDoList = new TaskList();
         toDoList.addTask();
-        toDoList.addTask();
         toDoList.displayList();
     }
 }
