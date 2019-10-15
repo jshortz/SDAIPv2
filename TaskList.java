@@ -56,10 +56,4 @@ public class TaskList {
             return null;
         }
     }
-
-    public static void main(String[] args) {
-        TaskList toDoList = new TaskList();
-        toDoList.addTask();
-        toDoList.displayList();
-    }
 }

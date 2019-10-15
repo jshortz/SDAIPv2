@@ -28,6 +28,10 @@ public class InputReader {
         return inputReader.nextInt();
     }
 
+    public void close() {
+        inputReader.close();
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         InputReader reader = new InputReader();
         System.out.println("Enter a String");
