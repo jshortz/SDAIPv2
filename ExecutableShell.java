@@ -45,20 +45,6 @@ public class ExecutableShell {
         return command;
     }
 
-    public static void displayHelpManual() throws IOException {
-        InputStream userManual = new BufferedInputStream(new FileInputStream("UserManual.md"));
-        byte[] buffer = new byte[8192];
-
-        try {
-            for (int i = 0; (i = userManual.read(buffer)) != -1; ) {
-                System.out.write(buffer, 0, i);
-            }
-        } finally {
-            userManual.close();
-        }                                                                                                                
-    }
-
-
     public boolean isValidCommand(String command) {
         return commands.contains(command);
     }
@@ -92,13 +78,11 @@ public class ExecutableShell {
         }
     }
 
-  feature/editTask
     public void queryUserForCommand() {
         System.out.println("Please enter any of the following commands:");
         displayCommands();
     }
 
-feature/ExecutableShell
     public static void main(String[] args) throws IOException {
         ExecutableShell shell = new ExecutableShell();
         displayWelcome();
