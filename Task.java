@@ -7,6 +7,7 @@ public class Task {
     protected Date date;
     protected String description;
     protected String id;
+    protected boolean complete;
 
     public Task(String title, String project, Date date, String description) {
         this.title = title;
@@ -14,6 +15,7 @@ public class Task {
         this.date = date;
         this.description = description;
         id = "" + title + date.getYear() + date.getMonth() + date.getDay() + date.getHours() + "";
+        complete = false;
     }
 
     public String toString() {

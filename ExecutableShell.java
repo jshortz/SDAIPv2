@@ -48,7 +48,12 @@ public class ExecutableShell {
                      toDoList.addTask();
                      break;
                  case "EDIT TASK" :
-                     // IMPLEMENT
+                     if (toDoList.isListEmpty()) {
+                         System.out.println("Your list doesn't contain any tasks to edit");
+                     } else {
+                         toDoList.editTask();
+                     }
+                     break;
                  case "REMOVE TASK" :
                      // IMPLEMENT
                  case "SAVE AND QUIT" :
