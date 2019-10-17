@@ -4,8 +4,9 @@ import java.io.*;
 
 public class ExecutableShell {
 
-    protected ArrayList<String> commands;
+    protected static ArrayList<String> commands;
     protected TaskList toDoList;
+    protected static ExecutableShell shell = new ExecutableShell();
 
     public ExecutableShell() {
         commands = new ArrayList<>();
@@ -78,14 +79,19 @@ public class ExecutableShell {
         }
     }
 
-    public void queryUserForCommand() {
+    public void queryUserForCommand() throws IOException {
         System.out.println("Please enter any of the following commands:");
-        displayCommands();
+        System.out.println("(Note that any command other than 'SAVE AND QUIT' will lead to a new prompt for a command)");
+        shell.displayCommands();
+        String command = getCommand();
+        if (command != "SAVE AND QUIT") {
+            shell.processCommand(command);
+            queryUserForCommand();
+        }
     }
 
     public static void main(String[] args) throws IOException {
-        ExecutableShell shell = new ExecutableShell();
         displayWelcome();
-        shell.processCommand(getCommand());
+        shell.queryUserForCommand();
     }
 }
