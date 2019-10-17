@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.io.*;
 
@@ -23,6 +24,19 @@ public class ExecutableShell {
 
     public void displayCommands() {
         System.out.println(commands.toString());
+    }
+
+    public void displayHelpManual() throws IOException {
+        InputStream userManual = new BufferedInputStream(new FileInputStream("UserManual.md"));
+        byte[] buffer = new byte[8192];
+
+        try {
+            for (int i = 0; (i = userManual.read(buffer)) != -1;) {
+                System.out.write(buffer, 0, i);
+            }
+        } finally {
+            userManual.close();
+        }
     }
 
     public static String getCommand() {
@@ -78,16 +92,16 @@ public class ExecutableShell {
         }
     }
 
+  feature/editTask
     public void queryUserForCommand() {
         System.out.println("Please enter any of the following commands:");
         displayCommands();
     }
 
+feature/ExecutableShell
     public static void main(String[] args) throws IOException {
         ExecutableShell shell = new ExecutableShell();
         displayWelcome();
-        shell.processCommand(getCommand());
-        shell.processCommand(getCommand());
         shell.processCommand(getCommand());
     }
 }
