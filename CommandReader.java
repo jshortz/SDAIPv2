@@ -39,7 +39,66 @@ public class CommandReader {
         return new Date(year, month, day, hour, minute);
     }
 
-    public void getCommandFromUser() {
 
+
+    public String getTaskToEditFromUser() {
+        InputReader inputReadFromUser = new InputReader();
+        System.out.println("Please enter the title of the task you wish to edit:");
+        return inputReadFromUser.readString();
+    }
+
+    public boolean editTitle() {
+        InputReader inputReadFromUser = new InputReader();
+        System.out.println("Do you want to edit the title of the task? Enter Y or N.");
+        String answer = inputReadFromUser.readString();
+        if (answer.equals("Y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean editProject() {
+        InputReader inputReadFromUser = new InputReader();
+        System.out.println("Do you want to edit the Project assigned to the task? Enter Y or N.");
+        String answer = inputReadFromUser.readString();
+        if (answer.equals("Y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean editDescription() {
+        InputReader inputReadFromUser = new InputReader();
+        System.out.println("Do you want to edit the Description of the task? Enter Y or N.");
+        String answer = inputReadFromUser.readString();
+        if (answer.equals("Y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean editDate() {
+        InputReader inputReadFromUser = new InputReader();
+        System.out.println("Do you want to edit the Due Date of the task? Enter Y or N.");
+        String answer = inputReadFromUser.readString();
+        if (answer.equals("Y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean markComplete() {
+        InputReader inputReadFromUser = new InputReader();
+        System.out.println("Do you wish to mark the task as complete?");
+        String answer = inputReadFromUser.readString();
+        if (answer.equals("Y")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

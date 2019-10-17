@@ -10,6 +10,29 @@ public class TaskList {
         commandReader = new CommandReader();
     }
 
+    public void editTask() {
+        Task taskToEdit = getTaskByTitle(commandReader.getTaskToEditFromUser());
+        InputReader inputReader = new InputReader();
+        if (commandReader.editTitle()) {
+            System.out.println("Please enter a new title:");
+            taskToEdit.title = inputReader.readString();
+        }
+        if (commandReader.editProject()) {
+            System.out.println("Please enter a new Project:");
+            taskToEdit.project = inputReader.readString();
+        }
+        if (commandReader.editDescription()) {
+            System.out.println("Please enter a new Description:");
+            taskToEdit.description = inputReader.readString();
+        }
+        if (commandReader.editDate()) {
+            taskToEdit.date = commandReader.getDateFromUser();
+        }
+        if (commandReader.markComplete()) {
+            taskToEdit.complete = true;
+        }
+    }
+
     public void addTask() {
         Task taskToAdd = commandReader.getTaskToAddFromUser();
         taskList.add(taskToAdd);
@@ -21,11 +44,19 @@ public class TaskList {
         }
     }
 
+    public boolean isListEmpty() {
+        if (taskList.size() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public Task getTaskByTitle(String titleToGet) {
 
         ArrayList<Task> tasksByTitle = new ArrayList<>();
         for (Task task : taskList) {
-            if (task.title == titleToGet) {
+            if (task.title.equals(titleToGet)) {
                 tasksByTitle.add(task);
             }
         }
