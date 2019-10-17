@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.*;
 
 public class ExecutableShell {
 
@@ -30,15 +31,29 @@ public class ExecutableShell {
         return command;
     }
 
+    public static void displayHelpManual() throws IOException {
+        InputStream userManual = new BufferedInputStream(new FileInputStream("UserManual.md"));
+        byte[] buffer = new byte[8192];
+
+        try {
+            for (int i = 0; (i = userManual.read(buffer)) != -1; ) {
+                System.out.write(buffer, 0, i);
+            }
+        } finally {
+            userManual.close();
+        }                                                                                                                
+    }
+
+
     public boolean isValidCommand(String command) {
         return commands.contains(command);
     }
 
-    public void processCommand(String command) {
+    public void processCommand(String command) throws IOException {
         if (isValidCommand(command)) {
              switch (command) {
                  case "HELP" :
-                     System.out.println("HELP ME");
+                     displayHelpManual();
                      break;
                  case "VIEW LIST" :
                      toDoList.displayList();
@@ -68,7 +83,7 @@ public class ExecutableShell {
         displayCommands();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ExecutableShell shell = new ExecutableShell();
         displayWelcome();
         shell.processCommand(getCommand());
