@@ -16,9 +16,8 @@ public class ExecutableShell {
         toDoList = new TaskList();
     }
 
-    public void displayWelcome() {
-        System.out.println("Welcome to the Task Manager. You may type HELP to view the user manual. " +
-                "Please enter a command from the following options.");
+    public static void displayWelcome() {
+        System.out.println("Welcome to the Task Manager. You may type HELP to view the user manual.");
     }
 
     public void displayCommands() {
@@ -64,10 +63,14 @@ public class ExecutableShell {
         }
     }
 
+    public void queryUserForCommand() {
+        System.out.println("Please enter any of the following commands:");
+        displayCommands();
+    }
+
     public static void main(String[] args) {
         ExecutableShell shell = new ExecutableShell();
-        shell.displayWelcome();
-        shell.displayCommands();
+        displayWelcome();
         shell.processCommand(getCommand());
         shell.processCommand(getCommand());
         shell.processCommand(getCommand());
