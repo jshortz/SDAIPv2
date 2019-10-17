@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.io.*;
 
 public class ExecutableShell {
 
@@ -17,9 +18,8 @@ public class ExecutableShell {
         toDoList = new TaskList();
     }
 
-    public void displayWelcome() {
-        System.out.println("Welcome to the Task Manager. You may type HELP to view the user manual. " +
-                "Please enter a command from the following options.");
+    public static void displayWelcome() {
+        System.out.println("Welcome to the Task Manager. You may type HELP to view the user manual.");
     }
 
     public void displayCommands() {
@@ -44,6 +44,20 @@ public class ExecutableShell {
         String command = userInputReader.readString();
         return command;
     }
+
+    public static void displayHelpManual() throws IOException {
+        InputStream userManual = new BufferedInputStream(new FileInputStream("UserManual.md"));
+        byte[] buffer = new byte[8192];
+
+        try {
+            for (int i = 0; (i = userManual.read(buffer)) != -1; ) {
+                System.out.write(buffer, 0, i);
+            }
+        } finally {
+            userManual.close();
+        }                                                                                                                
+    }
+
 
     public boolean isValidCommand(String command) {
         return commands.contains(command);
@@ -78,10 +92,16 @@ public class ExecutableShell {
         }
     }
 
+  feature/editTask
+    public void queryUserForCommand() {
+        System.out.println("Please enter any of the following commands:");
+        displayCommands();
+    }
+
+feature/ExecutableShell
     public static void main(String[] args) throws IOException {
         ExecutableShell shell = new ExecutableShell();
-        shell.displayWelcome();
-        shell.displayCommands();
+        displayWelcome();
         shell.processCommand(getCommand());
     }
 }
