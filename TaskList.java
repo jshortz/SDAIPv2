@@ -110,4 +110,12 @@ public class TaskList {
         oos.writeObject(taskList);
         oos.close();
     }
+
+    public void sort() {
+        if (commandReader.getIfTitleSort()) {
+            System.out.println("Sort by Title");
+        } else {
+            System.out.println("Sort by Date");
+        }
+    }
 }

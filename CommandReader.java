@@ -107,4 +107,19 @@ public class CommandReader {
             return false;
         }
     }
+
+    public boolean getIfTitleSort() {
+        InputReader inputReadFromUser = new InputReader();
+        System.out.println("Do you want to sort by TITLE or DATE?");
+        String userSortAnswer = inputReadFromUser.readString();
+        if ((!userSortAnswer.equals("TITLE")) && (!userSortAnswer.equals("DATE"))) {
+            System.out.println("Please enter TITLE or DATE to sort by.");
+            userSortAnswer = inputReadFromUser.readString();
+        }
+        if (userSortAnswer.equals("TITLE")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

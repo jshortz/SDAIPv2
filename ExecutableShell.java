@@ -15,6 +15,7 @@ public class ExecutableShell {
         commands.add("ADD TASK");
         commands.add("EDIT TASK");
         commands.add("REMOVE TASK");
+        commands.add("SORT LIST");
         commands.add("SAVE AND QUIT");
         toDoList = new TaskList();
     }
@@ -72,6 +73,8 @@ public class ExecutableShell {
                  case "REMOVE TASK" :
                      toDoList.removeTask();
                      break;
+                 case "SORT LIST" :
+                     toDoList.sort();
                  case "SAVE AND QUIT" :
                      toDoList.saveAndQuit();
                      break;
