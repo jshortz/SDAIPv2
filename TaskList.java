@@ -3,11 +3,10 @@ import java.util.ArrayList;
 public class TaskList {
 
     protected ArrayList<Task> taskList;
-    protected CommandReader commandReader;
+    protected CommandReader commandReader = new CommandReader();
 
     public TaskList() {
         taskList = new ArrayList<>();
-        commandReader = new CommandReader();
     }
 
     public void editTask() {
