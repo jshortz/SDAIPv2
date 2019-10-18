@@ -72,7 +72,7 @@ public class ExecutableShell {
                  case "REMOVE TASK" :
                      toDoList.removeTask();
                  case "SAVE AND QUIT" :
-                     // IMPLEMENT
+                     toDoList.saveAndQuit();
             }
         } else {
             System.out.println("That is not a valid command");

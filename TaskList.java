@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -6,8 +7,18 @@ public class TaskList {
     protected CommandReader commandReader;
 
     public TaskList() {
-        taskList = new ArrayList<>();
-        commandReader = new CommandReader();
+        try {
+            FileInputStream fis = new FileInputStream("taskList.tmp");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            taskList = (ArrayList<Task>) ois.readObject();
+            ois.close();
+            // taskList = new ArrayList<>();
+            commandReader = new CommandReader();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException f) {
+            System.out.println(f.getMessage());
+        }
     }
 
     public void editTask() {
@@ -91,5 +102,12 @@ public class TaskList {
     public void removeTask() {
         Task taskToRemove = getTaskByTitle(commandReader.getTaskToRemoveFromUser());
         taskList.removeIf((task -> task == taskToRemove));
+    }
+
+    public void saveAndQuit() throws IOException {
+        FileOutputStream fos = new FileOutputStream("taskList.tmp");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(taskList);
+        oos.close();
     }
 }
