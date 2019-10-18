@@ -70,7 +70,7 @@ public class ExecutableShell {
                      }
                      break;
                  case "REMOVE TASK" :
-                     // IMPLEMENT
+                     toDoList.removeTask();
                  case "SAVE AND QUIT" :
                      // IMPLEMENT
             }
