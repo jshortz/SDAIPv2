@@ -47,6 +47,12 @@ public class CommandReader {
         return inputReadFromUser.readString();
     }
 
+    public String getTaskToRemoveFromUser() {
+        InputReader inputReadFromUser = new InputReader();
+        System.out.println("Please enter the title of the task you wish to remove:");
+        return inputReadFromUser.readString();
+    }
+
     public boolean editTitle() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the title of the task? Enter Y or N.");

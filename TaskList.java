@@ -87,4 +87,9 @@ public class TaskList {
             return null;
         }
     }
+
+    public void removeTask() {
+        Task taskToRemove = getTaskByTitle(commandReader.getTaskToRemoveFromUser());
+        taskList.removeIf((task -> task == taskToRemove));
+    }
 }
