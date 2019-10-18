@@ -71,8 +71,10 @@ public class ExecutableShell {
                      break;
                  case "REMOVE TASK" :
                      toDoList.removeTask();
+                     break;
                  case "SAVE AND QUIT" :
                      toDoList.saveAndQuit();
+                     break;
             }
         } else {
             System.out.println("That is not a valid command");
@@ -84,9 +86,11 @@ public class ExecutableShell {
         System.out.println("(Note that any command other than 'SAVE AND QUIT' will lead to a new prompt for a command)");
         shell.displayCommands();
         String command = getCommand();
-        if (command != "SAVE AND QUIT") {
+        if (!command.equals("SAVE AND QUIT")) {
             shell.processCommand(command);
             queryUserForCommand();
+        } else {
+            System.out.println("Thank you for using Task Manager. The next time you start, your list will be loaded automatically.");
         }
     }
 
